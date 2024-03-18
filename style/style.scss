@@ -29,6 +29,10 @@ html[data-dust=clear] {
             line-height: 10rem;
         }
     }
+
+    .blur {
+        // display: none;
+    }
 };
 
 html[data-dust=normal] {
@@ -121,6 +125,7 @@ body {
 
     h1 {
         font-size: 1rem;
+        z-index: 100;
     }
 
     h2 {
@@ -136,6 +141,7 @@ body {
     flex-direction: column;
     justify-content: center;
     bottom: $margin;
+    z-index: 100;
 
 
     p {
@@ -144,4 +150,15 @@ body {
             margin-bottom: 0.222rem;
         }
     }
+}
+
+#eraseCanvas {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
 }
