@@ -33,19 +33,23 @@ fetch(url)
 
         if(0 <= seoulData && seoulData < 31 ) {
             document.querySelector("html").dataset.dust="clear";
-            document.querySelector(".title >h2").innerText = "Clear";
+            document.querySelectorAll("h2")[0].innerText = "Clear";
+            document.querySelectorAll("h2")[1].innerText = "Clear";
             document.querySelector(".dust-grade").innerText = "좋음";
         } else if(31 <= seoulData && seoulData < 81) {
             document.querySelector("html").dataset.dust="normal";
-            document.querySelector(".title >h2").innerText = "Normal";
+            document.querySelectorAll("h2")[0].innerText = "Normal";
+            document.querySelectorAll("h2")[1].innerText = "Normal";
             document.querySelector(".dust-grade").innerText = "보통";
         } else if(81 <= seoulData && seoulData < 150) {
             document.querySelector("html").dataset.dust="unheal";
-            document.querySelector(".title >h2").innerText = "Unhealthy";
+            document.querySelectorAll("h2")[0].innerText = "Unhealthy";
+            document.querySelectorAll("h2")[1].innerText = "Unhealthy";
             document.querySelector(".dust-grade").innerText = "나쁨";
         } else {
             document.querySelector("html").dataset.dust="very-unheal";
-            document.querySelector(".title >h2").innerText = "Very Unhealthy";
+            document.querySelectorAll("h2")[0].innerText = "Very Unhealthy";
+            document.querySelectorAll("h2")[1].innerText = "Very Unhealthy";
             document.querySelector(".dust-grade").innerText = "매우 나쁨";
         }
 
@@ -59,5 +63,8 @@ fetch(url)
         console.error('API 호출 중 오류 발생:', error);
     });
 
-
-    
+const pos = document.documentElement;
+pos.addEventListener('mousemove', e => {
+    pos.style.setProperty('--x', e.clientX + "px");
+    pos.style.setProperty('--y', e.clientY + "px");
+})
