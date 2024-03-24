@@ -55,6 +55,9 @@ html[data-dust=normal] {
         filter: blur(10px);
     }
 
+    .top-title {
+        clip-path: circle(9.3vw at var(--x) var(--y));
+    }
 };
 
 html[data-dust=unheal] {
@@ -75,6 +78,10 @@ html[data-dust=unheal] {
 
     .bottom-title {
         filter: blur(20px);
+    }
+
+    .top-title {
+        clip-path: circle(9.3vw at var(--x) var(--y));
     }
 };
 
@@ -97,6 +104,10 @@ html[data-dust=very-unheal] {
 
     .bottom-title {
         filter: blur(30px);
+    }
+
+    .top-title {
+        clip-path: circle(9.3vw at var(--x) var(--y));
     }
 
 };
@@ -167,12 +178,10 @@ body {
 }
 
 .bottom-title {
-    filter: blur(20px);
+    // filter: blur(20px);
 }
 
-.top-title {
-    clip-path: circle(9.3vw at var(--x) var(--y));
-}
+
 
 
 // .blur-container {

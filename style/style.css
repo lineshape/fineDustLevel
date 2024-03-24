@@ -34,6 +34,10 @@ html[data-dust=normal] .title h2 {
 html[data-dust=normal] .bottom-title {
   filter: blur(10px);
 }
+html[data-dust=normal] .top-title {
+  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
+          clip-path: circle(9.3vw at var(--x) var(--y));
+}
 
 html[data-dust=unheal]:root {
   --background: #A6A6A6;
@@ -47,6 +51,10 @@ html[data-dust=unheal] .title h2 {
 }
 html[data-dust=unheal] .bottom-title {
   filter: blur(20px);
+}
+html[data-dust=unheal] .top-title {
+  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
+          clip-path: circle(9.3vw at var(--x) var(--y));
 }
 
 html[data-dust=very-unheal]:root {
@@ -62,6 +70,10 @@ html[data-dust=very-unheal] .title h2 {
 }
 html[data-dust=very-unheal] .bottom-title {
   filter: blur(30px);
+}
+html[data-dust=very-unheal] .top-title {
+  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
+          clip-path: circle(9.3vw at var(--x) var(--y));
 }
 
 html {
@@ -117,13 +129,4 @@ body {
 }
 .contents p:nth-child(1) {
   margin-bottom: 0.222rem;
-}
-
-.bottom-title {
-  filter: blur(20px);
-}
-
-.top-title {
-  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
-          clip-path: circle(9.3vw at var(--x) var(--y));
 }/*# sourceMappingURL=style.css.map */
