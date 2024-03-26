@@ -13,6 +13,8 @@ $margin : 1.333rem;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 html[data-dust=clear] {
@@ -32,6 +34,35 @@ html[data-dust=clear] {
 
     .blur {
         // display: none;
+    }
+
+    .poster.background {
+        >span {
+            position: fixed;
+            font-family: "Yeon Sung", system-ui;
+            font-size: 3.555rem;
+
+            &:nth-child(1) {
+                left: 95vw;
+                bottom: 0;
+            }
+
+            &:nth-child(2) {
+                left: 70vw;
+            }
+
+            &:nth-child(3) {
+                left: 60vw;
+            }
+
+            &:nth-child(4) {
+                left: 35vw;
+            }
+
+            &:nth-child(5) {
+                left: -2vw;
+            }
+        }
     }
 };
 
@@ -55,9 +86,8 @@ html[data-dust=normal] {
         filter: blur(10px);
     }
 
-    .top-title {
-        clip-path: circle(9.3vw at var(--x) var(--y));
-    }
+
+
 };
 
 html[data-dust=unheal] {
@@ -80,9 +110,6 @@ html[data-dust=unheal] {
         filter: blur(20px);
     }
 
-    .top-title {
-        clip-path: circle(9.3vw at var(--x) var(--y));
-    }
 };
 
 html[data-dust=very-unheal] {
@@ -106,10 +133,7 @@ html[data-dust=very-unheal] {
         filter: blur(30px);
     }
 
-    .top-title {
-        clip-path: circle(9.3vw at var(--x) var(--y));
-    }
-
+    
 };
 
 
@@ -122,6 +146,7 @@ html {
 body {
     font-family: "Pretendard", sans-serif;
     color: var(--color);
+    
 }
 
 .poster {
@@ -181,6 +206,9 @@ body {
     // filter: blur(20px);
 }
 
+.top-title {
+    clip-path: circle(9.3vw at calc(var(--x) - 8vw) calc(var(--y) - 10vh));
+}
 
 
 

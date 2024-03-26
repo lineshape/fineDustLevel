@@ -19,6 +19,7 @@ fetch(url)
         // API를 통해 받아온 데이터를 'res' 변수에 담는다
         const res = data;
         const seoulData = res.response.body.items[0].seoul;
+        // const seoulData = 90;
         const dateData = res.response.body.items[0].dataTime;
 
         // Date 객체 생성
@@ -65,6 +66,6 @@ fetch(url)
 
 const pos = document.documentElement;
 pos.addEventListener('mousemove', e => {
-    pos.style.setProperty('--x', e.clientX + "px");
-    pos.style.setProperty('--y', e.clientY + "px");
+    pos.style.setProperty('--x', `${e.clientX}px`);
+    pos.style.setProperty('--y', `${e.clientY}px`);
 })

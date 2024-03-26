@@ -9,6 +9,10 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 html[data-dust=clear]:root {
@@ -21,6 +25,28 @@ html[data-dust=clear] .title h2 {
   font-size: 26.388vw;
   line-height: 10rem;
 }
+html[data-dust=clear] .poster.background > span {
+  position: fixed;
+  font-family: "Yeon Sung", system-ui;
+  font-size: 3.555rem;
+}
+html[data-dust=clear] .poster.background > span:nth-child(1) {
+  left: 95vw;
+  bottom: 0;
+}
+html[data-dust=clear] .poster.background > span:nth-child(2) {
+  left: 70vw;
+}
+html[data-dust=clear] .poster.background > span:nth-child(3) {
+  left: 60vw;
+}
+html[data-dust=clear] .poster.background > span:nth-child(4) {
+  left: 35vw;
+}
+html[data-dust=clear] .poster.background > span:nth-child(5) {
+  left: -2vw;
+}
+
 html[data-dust=normal]:root {
   --background: #B5FF57;
   --color: #0E5537;
@@ -33,10 +59,6 @@ html[data-dust=normal] .title h2 {
 }
 html[data-dust=normal] .bottom-title {
   filter: blur(10px);
-}
-html[data-dust=normal] .top-title {
-  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
-          clip-path: circle(9.3vw at var(--x) var(--y));
 }
 
 html[data-dust=unheal]:root {
@@ -52,10 +74,6 @@ html[data-dust=unheal] .title h2 {
 html[data-dust=unheal] .bottom-title {
   filter: blur(20px);
 }
-html[data-dust=unheal] .top-title {
-  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
-          clip-path: circle(9.3vw at var(--x) var(--y));
-}
 
 html[data-dust=very-unheal]:root {
   --background: #FF5050;
@@ -70,10 +88,6 @@ html[data-dust=very-unheal] .title h2 {
 }
 html[data-dust=very-unheal] .bottom-title {
   filter: blur(30px);
-}
-html[data-dust=very-unheal] .top-title {
-  -webkit-clip-path: circle(9.3vw at var(--x) var(--y));
-          clip-path: circle(9.3vw at var(--x) var(--y));
 }
 
 html {
@@ -129,4 +143,9 @@ body {
 }
 .contents p:nth-child(1) {
   margin-bottom: 0.222rem;
+}
+
+.top-title {
+  -webkit-clip-path: circle(9.3vw at calc(var(--x) - 8vw) calc(var(--y) - 10vh));
+          clip-path: circle(9.3vw at calc(var(--x) - 8vw) calc(var(--y) - 10vh));
 }/*# sourceMappingURL=style.css.map */
