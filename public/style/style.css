@@ -53,6 +53,10 @@ html[data-dust=normal] .bottom-title {
 html[data-dust=normal] .poster.background.normal {
   display: block;
 }
+html[data-dust=normal] .top-title {
+  -webkit-clip-path: circle(9.3vw at calc(var(--x) - 9.3vw) calc(var(--y) - 4.65vw));
+          clip-path: circle(9.3vw at calc(var(--x) - 9.3vw) calc(var(--y) - 4.65vw));
+}
 
 html[data-dust=unheal]:root {
   --background: #A6A6A6;
@@ -87,6 +91,10 @@ html[data-dust=very-unheal] .bottom-title {
 }
 html[data-dust=very-unheal] .poster.background.very-unheal {
   display: block;
+}
+html[data-dust=very-unheal] .top-title {
+  -webkit-clip-path: circle(9.3vw at calc(var(--x) - 1.86vw) calc(var(--y) - 6.2vw));
+          clip-path: circle(9.3vw at calc(var(--x) - 1.86vw) calc(var(--y) - 6.2vw));
 }
 
 html {
@@ -203,6 +211,15 @@ body {
   left: -2vw;
 }
 
+.dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 100%;
+  background: var(--color);
+  transition: transform 0.25s ease-in-out;
+}
+
 @keyframes heart-rise {
   0% {
     transform: translateY(0);
@@ -211,5 +228,15 @@ body {
   100% {
     transform: translateY(-130vh); /* 화면 높이만큼 위로 올라갑니다. */
     opacity: 0; /* 점점 투명해지도록 설정하여 자연스럽게 사라지게 합니다. */
+  }
+}
+@keyframes dust-moving {
+  0% {
+    transform: translateX(0);
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateX(-1vw);
+    transform: translateY(1vw);
   }
 }/*# sourceMappingURL=style.css.map */

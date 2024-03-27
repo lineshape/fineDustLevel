@@ -70,6 +70,9 @@ html[data-dust=normal] {
         display: block;
     }
 
+    .top-title {
+        clip-path: circle(9.3vw at calc(var(--x) - 9.3vw) calc(var(--y) - 9.3vw/2));
+    }
 
 };
 
@@ -123,6 +126,9 @@ html[data-dust=very-unheal] {
         display: block;
     }
 
+    .top-title {
+        clip-path: circle(9.3vw at calc(var(--x) - 9.3vw /5) calc(var(--y) - 9.3vw/1.5));
+    }
     
 };
 
@@ -264,6 +270,24 @@ body {
     }
 }
 
+
+.dust {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 100%;
+    background: var(--color);
+    transition: transform 0.25s ease-in-out;
+    // animation-name: dust-moving;
+    // animation-duration: 1s;
+    // animation-direction: alternate;
+    // animation-iteration-count: infinite;
+    // &:nth-child(2n) {
+    //     animation-delay: 1s;
+    // }
+}
+
+
 @keyframes heart-rise {
     0% {
       transform: translateY(0);
@@ -274,3 +298,16 @@ body {
       opacity: 0; /* 점점 투명해지도록 설정하여 자연스럽게 사라지게 합니다. */
     }
   }
+
+
+@keyframes dust-moving {
+    0% {
+        transform: translateX(0);
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateX(-1vw);
+        transform: translateY(+1vw);
+    }
+}

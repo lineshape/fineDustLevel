@@ -54,13 +54,56 @@ const createHeart = (e) => {
         heart.remove();})
     }
 
+// Normal - Dust Animation
+
+const createDust = (i) => {
+    while(i){
+        drawDust();
+        i-=1;
+    }
+};
+
+const drawDust = () => {
+    let dust = document.createElement('div');
+    dust.className = "dust";
+    dust.style.top = 100*Math.random()+'%';
+    dust.style.left = 100*Math.random()+'%';
+
+    if(31 <= seoulData && seoulData < 81) {
+        document.querySelector('.poster.background.normal').appendChild(dust);
+    } else if(81 <= seoulData && seoulData < 150) {
+        document.querySelector('.poster.background.unheal').appendChild(dust);
+    } else {
+        document.querySelector('.poster.background.very-unheal').appendChild(dust);
+    }
+    
+};
+
+// const animateDust = () => {
+//     const dusts = document.querySelectorAll(".dust");
+//     Array.prototype.forEach.call(dusts, function(el, i))
+// }
+
+
+// // Animate Stars
+// function selectStars() {
+//   stars = document.querySelectorAll(".star");
+//   console.log(stars)
+// }
+// function animateStars() {
+//     Array.prototype.forEach.call(stars, function(el, i){
+//       TweenMax.to(el, Math.random() * 0.5 + 0.5, {opacity: Math.random(), onComplete: animateStars});
+//     });
+// }
+
 
 fetch(url)
     .then(response => response.json())
     .then(data => {
         // API를 통해 받아온 데이터를 'res' 변수에 담는다
         const res = data;
-        const seoulData = res.response.body.items[0].seoul;
+        // const seoulData = res.response.body.items[0].seoul;
+        const seoulData = 55;
         const dateData = res.response.body.items[0].dataTime;
 
         // Date 객체 생성
@@ -71,7 +114,46 @@ fetch(url)
         const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth()는 0부터 시작하므로 1을 더해줌
         const day = String(date.getDate()).padStart(2, '0');
         const hour = String(date.getHours()).padStart(2, '0');
+        let background;
 
+        const chooseBackground = () => {
+
+            if(31 <= seoulData && seoulData < 81) {
+                background = document.querySelector('.poster.background.normal');
+            } else if(81 <= seoulData && seoulData < 150) {
+                background = document.querySelector('.poster.background.unheal');
+            } else {
+                background = document.querySelector('.poster.background.very-unheal');
+            }
+            
+        }
+
+        const drawDust = () => {
+            const dust = document.createElement('div');
+            dust.className = "dust";
+            dust.style.top = 100*Math.random()+'%';
+            dust.style.left = 100*Math.random()+'%';
+        
+            chooseBackground();
+            background.appendChild(dust);
+            
+        };
+
+
+        // 배경 먼지 생성
+        const createDust = (i) => {
+            while(i){
+                drawDust();
+                i-=1;
+            }
+
+            // const dust = document.querySelectorAll('.dust');
+            // for (let k = 0; k < dust.length; k++) {
+            //     moveDust(dust[k]);
+            // }
+            
+        };
+        
 
         if(0 <= seoulData && seoulData < 31 ) {
             document.querySelector("html").dataset.dust="clear";
@@ -85,16 +167,22 @@ fetch(url)
             document.querySelectorAll("h2")[0].innerText = "Normal";
             document.querySelectorAll("h2")[1].innerText = "Normal";
             document.querySelector(".dust-grade").innerText = "보통";
+            createDust(seoulData * 10);
+            // createStars(100);
+            // selectStars();
+            // animateStars();
         } else if(81 <= seoulData && seoulData < 150) {
             document.querySelector("html").dataset.dust="unheal";
             document.querySelectorAll("h2")[0].innerText = "Unhealthy";
             document.querySelectorAll("h2")[1].innerText = "Unhealthy";
             document.querySelector(".dust-grade").innerText = "나쁨";
+            createDust(seoulData * 25);
         } else {
             document.querySelector("html").dataset.dust="very-unheal";
             document.querySelectorAll("h2")[0].innerText = "Very Unhealthy";
             document.querySelectorAll("h2")[1].innerText = "Very Unhealthy";
             document.querySelector(".dust-grade").innerText = "매우 나쁨";
+            createDust(seoulData * 50);
         }
 
         document.querySelector(".loc-time").innerText = `서울, ${year}년 ${month}월 ${day}일 ${hour}시 기준`;
@@ -111,4 +199,30 @@ const pos = document.documentElement;
 pos.addEventListener('mousemove', e => {
     pos.style.setProperty('--x', `${e.x}px`);
     pos.style.setProperty('--y', `${e.y}px`);
-})
+});
+
+// 마우스 피하기 애니메이션
+// document.addEventListener('mousemove', function(e) {
+//     const dustElements = document.querySelectorAll('.dust');
+//     const mouseX = e.clientX;
+//     const mouseY = e.clientY;
+
+//     dustElements.forEach(function(dust) {
+//         const dustX = dust.offsetLeft + dust.offsetWidth / 2;
+//         const dustY = dust.offsetTop + dust.offsetHeight / 2;
+//         const diffX = mouseX - dustX;
+//         const diffY = mouseY - dustY;
+//         const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+//         const maxDistance = 80; // 마우스로부터 최대 반응 거리
+
+//         if (distance < maxDistance) {
+//             const angle = Math.atan2(diffY, diffX);
+//             const moveX = Math.cos(angle) * maxDistance;
+//             const moveY = Math.sin(angle) * maxDistance;
+//             dust.style.transform = `translate(${-moveX/2}px, ${-moveY/2}px)`;
+//         } else {
+//             dust.style.transform = '';
+//         }
+//     });
+// });
+
