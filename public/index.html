@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Fine Dust Level</title>
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Eater&family=Permanent+Marker&family=Rubik+Bubbles&display=swap" rel="stylesheet">
@@ -15,12 +16,10 @@
 <body>
     
     <section class="poster background clear">
-        <!-- <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span> -->
     </section>
+    <section class="poster background normal">Normal</section>
+    <section class="poster background unheal">unhealty</section>
+    <section class="poster background very-unheal">very unhealty</section>
     <section class="title">
         <h1>오늘의 미세먼지는</h1>
         <h2 class="bottom-title">Clear</h2>
@@ -34,6 +33,6 @@
         <p class="loc-time">서울, 2024년 3월 17일 기준</p>
     </section>
     <div class="blur-container"></div>
-    <script src="/js/script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@ $margin : 1.333rem;
 
 @font-face {
     font-family: Pretendard;
-    src: url(/webfonts/Pretendard-Bold.subset.woff2) format(woff2); 
+    src: url(../webfonts/Pretendard-Bold.subset.woff2) format(woff2); 
     font-weight: 700;
     font-style: normal;
 }
@@ -27,43 +27,23 @@ html[data-dust=clear] {
         h2 {
             font-family: "Rubik Bubbles", system-ui;
             font-weight: 300;
-            font-size: 26.388vw;
+            font-size: 10.55rem;
             line-height: 10rem;
         }
-    }
 
-    .blur {
-        // display: none;
-    }
-
-    .poster.background {
-        >span {
-            position: fixed;
-            font-family: "Yeon Sung", system-ui;
-            font-size: 3.555rem;
-
-            &:nth-child(1) {
-                left: 95vw;
-                bottom: 0;
-            }
-
-            &:nth-child(2) {
-                left: 70vw;
-            }
-
-            &:nth-child(3) {
-                left: 60vw;
-            }
-
-            &:nth-child(4) {
-                left: 35vw;
-            }
-
-            &:nth-child(5) {
-                left: -2vw;
+        @media screen and (max-width: 650px) {
+            h2 {
+                font-size: 30vw;    
+                line-height: 0;
+                margin-top: 15vw;
             }
         }
     }
+
+    .poster.background.clear {
+        display: block;
+    }
+    
 };
 
 html[data-dust=normal] {
@@ -86,6 +66,9 @@ html[data-dust=normal] {
         filter: blur(10px);
     }
 
+    .poster.background.normal {
+        display: block;
+    }
 
 
 };
@@ -110,6 +93,9 @@ html[data-dust=unheal] {
         filter: blur(20px);
     }
 
+    .poster.background.unheal {
+        display: block;
+    }
 };
 
 html[data-dust=very-unheal] {
@@ -133,6 +119,10 @@ html[data-dust=very-unheal] {
         filter: blur(30px);
     }
 
+    .poster.background.very-unheal {
+        display: block;
+    }
+
     
 };
 
@@ -141,6 +131,14 @@ html[data-dust=very-unheal] {
 
 html {
     font-size: 36px;
+
+    @media screen and (max-width: 1150px) {
+        font-size: calc(16px + 1.2vw);
+    }
+
+    @media screen and (max-width: 870px) {
+        font-size: calc(12px + 1.2vw);
+    }
 }
 
 body {
@@ -149,28 +147,56 @@ body {
     
 }
 
-.poster {
+.poster.background {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
+    background: var(--background);
+    display: none;
 };
 
-.poster.background {
-    background: var(--background);
+.poster.background.clear {
+    >span {
+        position: fixed;
+        font-family: "Yeon Sung", system-ui;
+        font-size: 3.555rem;
+
+        &:nth-child(1) {
+            left: 95vw;
+            bottom: 0;
+        }
+
+        &:nth-child(2) {
+            left: 70vw;
+        }
+
+        &:nth-child(3) {
+            left: 60vw;
+        }
+
+        &:nth-child(4) {
+            left: 35vw;
+        }
+
+        &:nth-child(5) {
+            left: -2vw;
+        }
+    }
 }
 
 .title {
 
     display: flex;
-    position: absolute;
+    position: fixed;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: $margin;
+    padding: 0 16px;
 
     h1 {
         font-size: 1rem;
@@ -179,19 +205,20 @@ body {
 
     h2 {
         text-align: center;
-
+        
     }
 }
 
 .contents {
 
     display: flex;
-    position: absolute;
+    position: fixed;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     bottom: $margin;
     z-index: 100;
+    padding: 0 16px;
 
 
     p {
@@ -202,23 +229,48 @@ body {
     }
 }
 
-.bottom-title {
-    // filter: blur(20px);
-}
 
 .top-title {
-    clip-path: circle(9.3vw at calc(var(--x) - 8vw) calc(var(--y) - 10vh));
+    clip-path: circle(9.3vw at calc(var(--x) - 9.3vw/2) calc(var(--y) - 9.3vw/2));
 }
 
+.poster.background.clear {
+    >span {
+        position: fixed;
+        font-family: "Yeon Sung", system-ui;
+        font-size: 3.555rem;
+        
 
+        &:nth-child(1) {
+            left: 95vw;
+            bottom: 0;
+        }
 
-// .blur-container {
-//     /* 전체 페이지 또는 특정 컨테이너에 블러 효과 적용 */
-//     width: 100%;
-//     height: 100vh;
-//     backdrop-filter: blur(10px);
-//     z-index: 10;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-// }
+        &:nth-child(2) {
+            left: 70vw;
+        }
+
+        &:nth-child(3) {
+            left: 60vw;
+        }
+
+        &:nth-child(4) {
+            left: 35vw;
+        }
+
+        &:nth-child(5) {
+            left: -2vw;
+        }
+    }
+}
+
+@keyframes heart-rise {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-130vh); /* 화면 높이만큼 위로 올라갑니다. */
+      opacity: 0; /* 점점 투명해지도록 설정하여 자연스럽게 사라지게 합니다. */
+    }
+  }
