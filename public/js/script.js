@@ -1,8 +1,7 @@
 // 전역변수 선언
 let user_sido;
 
-// 전체적 접근
-    if (navigator.geolocation) {
+if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(({coords}) => {
             reverseGeocode(coords.latitude, coords.longitude);
         }, (error) => {
@@ -192,13 +191,14 @@ const getDust = () => {
 }
 
 
-
+// clip-path 위치 지정
 const pos = document.documentElement;
 pos.addEventListener('mousemove', e => {
     pos.style.setProperty('--x', `${e.x}px`);
     pos.style.setProperty('--y', `${e.y}px`);
 });
 
+// 마우스 피하기 인터랙션
 document.addEventListener('mousemove', function(e) {
     moveDust(e.clientX, e.clientY);
 });
