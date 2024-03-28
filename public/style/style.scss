@@ -79,7 +79,7 @@ html[data-dust=normal] {
 html[data-dust=unheal] {
     
     &:root {
-        --background: #A6A6A6;
+        --background: #818181;
         --color: #FFE928;
     }
 
@@ -104,7 +104,7 @@ html[data-dust=unheal] {
 html[data-dust=very-unheal] {
     
     &:root {
-        --background: #FF5050;
+        --background: #fd4242;
         --color: #D7D7D7;
     }
 
@@ -277,7 +277,7 @@ body {
     height: 2px;
     border-radius: 100%;
     background: var(--color);
-    transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-out;
     // animation-name: dust-moving;
     // animation-duration: 1s;
     // animation-direction: alternate;

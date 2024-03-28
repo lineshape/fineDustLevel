@@ -54,56 +54,12 @@ const createHeart = (e) => {
         heart.remove();})
     }
 
-// Normal - Dust Animation
-
-const createDust = (i) => {
-    while(i){
-        drawDust();
-        i-=1;
-    }
-};
-
-const drawDust = () => {
-    let dust = document.createElement('div');
-    dust.className = "dust";
-    dust.style.top = 100*Math.random()+'%';
-    dust.style.left = 100*Math.random()+'%';
-
-    if(31 <= seoulData && seoulData < 81) {
-        document.querySelector('.poster.background.normal').appendChild(dust);
-    } else if(81 <= seoulData && seoulData < 150) {
-        document.querySelector('.poster.background.unheal').appendChild(dust);
-    } else {
-        document.querySelector('.poster.background.very-unheal').appendChild(dust);
-    }
-    
-};
-
-// const animateDust = () => {
-//     const dusts = document.querySelectorAll(".dust");
-//     Array.prototype.forEach.call(dusts, function(el, i))
-// }
-
-
-// // Animate Stars
-// function selectStars() {
-//   stars = document.querySelectorAll(".star");
-//   console.log(stars)
-// }
-// function animateStars() {
-//     Array.prototype.forEach.call(stars, function(el, i){
-//       TweenMax.to(el, Math.random() * 0.5 + 0.5, {opacity: Math.random(), onComplete: animateStars});
-//     });
-// }
-
-
 fetch(url)
     .then(response => response.json())
     .then(data => {
         // API를 통해 받아온 데이터를 'res' 변수에 담는다
         const res = data;
-        // const seoulData = res.response.body.items[0].seoul;
-        const seoulData = 55;
+        const seoulData = res.response.body.items[0].seoul;
         const dateData = res.response.body.items[0].dataTime;
 
         // Date 객체 생성
@@ -146,12 +102,6 @@ fetch(url)
                 drawDust();
                 i-=1;
             }
-
-            // const dust = document.querySelectorAll('.dust');
-            // for (let k = 0; k < dust.length; k++) {
-            //     moveDust(dust[k]);
-            // }
-            
         };
         
 
@@ -176,13 +126,13 @@ fetch(url)
             document.querySelectorAll("h2")[0].innerText = "Unhealthy";
             document.querySelectorAll("h2")[1].innerText = "Unhealthy";
             document.querySelector(".dust-grade").innerText = "나쁨";
-            createDust(seoulData * 25);
+            createDust(seoulData * 10);
         } else {
             document.querySelector("html").dataset.dust="very-unheal";
             document.querySelectorAll("h2")[0].innerText = "Very Unhealthy";
             document.querySelectorAll("h2")[1].innerText = "Very Unhealthy";
             document.querySelector(".dust-grade").innerText = "매우 나쁨";
-            createDust(seoulData * 50);
+            createDust(seoulData * 10);
         }
 
         document.querySelector(".loc-time").innerText = `서울, ${year}년 ${month}월 ${day}일 ${hour}시 기준`;
@@ -201,28 +151,34 @@ pos.addEventListener('mousemove', e => {
     pos.style.setProperty('--y', `${e.y}px`);
 });
 
-// 마우스 피하기 애니메이션
-// document.addEventListener('mousemove', function(e) {
-//     const dustElements = document.querySelectorAll('.dust');
-//     const mouseX = e.clientX;
-//     const mouseY = e.clientY;
+document.addEventListener('mousemove', function(e) {
+    moveDust(e.clientX, e.clientY);
+});
 
-//     dustElements.forEach(function(dust) {
-//         const dustX = dust.offsetLeft + dust.offsetWidth / 2;
-//         const dustY = dust.offsetTop + dust.offsetHeight / 2;
-//         const diffX = mouseX - dustX;
-//         const diffY = mouseY - dustY;
-//         const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-//         const maxDistance = 80; // 마우스로부터 최대 반응 거리
+function moveDust(mouseX, mouseY) {
+    const dustElements = document.querySelectorAll('.dust');
+    dustElements.forEach(function(dust) {
+        const rect = dust.getBoundingClientRect();
+        const dustX = rect.left + window.scrollX + rect.width / 2; // window.scrollX/Y를 추가하여 절대 위치 계산
+        const dustY = rect.top + window.scrollY + rect.height / 2;
+        const diffX = mouseX - dustX;
+        const diffY = mouseY - dustY;
+        const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+        const maxDistance = 200; // 마우스로부터 최대 반응 거리
 
-//         if (distance < maxDistance) {
-//             const angle = Math.atan2(diffY, diffX);
-//             const moveX = Math.cos(angle) * maxDistance;
-//             const moveY = Math.sin(angle) * maxDistance;
-//             dust.style.transform = `translate(${-moveX/2}px, ${-moveY/2}px)`;
-//         } else {
-//             dust.style.transform = '';
-//         }
-//     });
-// });
+        if (distance < maxDistance) {
+            const angle = Math.atan2(diffY, diffX);
+            const moveX = Math.cos(angle) * maxDistance;
+            const moveY = Math.sin(angle) * maxDistance;
+            dust.style.transform = `translate(${-moveX/2}px, ${-moveY/2}px)`;
+        } else {
+            dust.style.transform = '';
+        }
+    });
+}
+
+
+
+
+
 
